@@ -1,113 +1,108 @@
 
 import React, { Component } from 'react';
 
- import shortid from 'shortid';
-//import { nanoid } from 'nanoid'
+ //import shortid from 'shortid';
+import { nanoid } from 'nanoid'
  //import { NewContacts } from './components/NewContacts';
-//import { Contacts } from './components/Contacts';
-import style from './components/phonebook.module.css'
+import { Contacts } from './components/Contacts';
+//import style from './components/phonebook.module.css'
+import { Form } from './components/Form';
+import { Filter } from './components/Filter';
 
 
 class App extends Component {
   state = {
     contacts: [
-
+      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    name: '',
-    number: '',
+    filter: '',
+  
     };
 
+    handleFilter = e => {
 
 
-    // const shortid = require('shortid');
-
-    // console.log(shortid.generate());
-    loginInputId = shortid.generate();
-
-    handleChange  = e => {
-const {name, value} = e.currentTarget;
-this.setState({[name]: value});
+this.setState({filter: e.currentTarget.value})
     }
 
+findContacts = () => { 
+const {contacts, filter} = this.state
+const normalizedFilter = filter.toLowerCase()
+return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter) )
 
-
-  handleNumberChange  = e => {
-    this.setState({ number: e.target.value });
-   
-};
-
-handleSubmit = e => {
-  e.preventDefault();
-  ///this.props.onSubmit({ ...this.state });
-
- console.log(this.state );
-  this.reset();
-}
- 
-
-reset = () => {
-  this.setState({name: '', number: '' })
-}
-
-////////////
   
+}
 
-///////
+deleteContacts = (id) => {
+  this.setState(prevState => ({ contacts: prevState.contacts.filter(contact => contact.id !== id) }))
+}
 
-/////////////
- render() {
+    // const shortid = require('shortid');
+// console.log(shortid.generate());
+    
+    // loginInputId = shortid.generate();
+
+//     handleChange  = e => {
+// const {name, value} = e.currentTarget;
+// this.setState({[name]: value});
+//     }
+
+
+
+//   handleNumberChange  = e => {
+//     this.setState({ number: e.target.value });
+   
+// };
+
+handleSubmit = ({name, number}) => {
+  const {contacts} = this.state
+  const findName = contacts.find(contact => contact.name === name)
+  if (findName){
+    alert('This name is already in the phone book')
+  } else { const contact = {id: nanoid(), name, number}
+ this.setState(({contacts}) => ({contacts:  [contact, ...contacts]}) )}
  
+
+
+
+
+//  console.log(this.state );
+  // this.reset();
+  
+}
+ 
+
+// reset = () => {
+//   this.setState({name: '', number: '' })
+// }
+
+
+ render() {
+ const visibleContacts = this.findContacts()
+
    return (
      
 <>
 <h1>Phonebook</h1>
-  <form  onSubmit={this.handleSubmit}>
- <div className={style.blockList}>
- <span className={style.span}>Neme:</span> 
-   <label >
-   <input
-   type="text"
-   name="name"
-   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-   required
-   id={this.loginInputId}
- value={this.state.name}
-
- onChange={this.handleChange }
-
-
+<Form 
+onAddContacts={this.handleSubmit}
 />
-
- </label>
-  
- </div>
- <div className={style.blockList}>
- <span className={style.span}>Number:</span> 
-
- <label>
- <input
-   type="tel"
-   name="number"
-   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-   title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-   required
-   value={this.state.number}
- onChange={this.handleChange}
-
- 
-
- />
- </label> </div> <div> <button  className={style.buttonSudmit} type='submit' onClick={this.handleSubmit}>Add contact</button> </div>
- </form>
  <h2>Contacts</h2>
 
+<Filter 
+value={this.state.filter}
+onChange={this.handleFilter}
+/>
 
 
+ <Contacts 
+contacts={visibleContacts}
+onDeleteContacts = {this.deleteContacts}
 
-   {/* <Contacts 
-contacts={this.handleSubmit()}
-/>   */}
+/>   
 
 
 </>
@@ -116,11 +111,6 @@ contacts={this.handleSubmit()}
  }
 
 }
-
-
-
-
-
 
 
 
