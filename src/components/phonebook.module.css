@@ -1,0 +1,27 @@
+
+
+
+
+.block {
+    border-radius: 3px;
+    border-color: black;
+}
+
+
+.blockList {
+padding-top: 20px;
+    display: flex;
+margin-left: 20px;
+}
+
+.span {
+   padding-right: 20px;
+}
+
+
+.buttonSudmit {
+   
+    margin-top: 20px;
+    display: flex;
+    margin-left: 20px;
+}
