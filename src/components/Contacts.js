@@ -4,15 +4,6 @@ import PropTypes from "prop-types"
 import { ElementContacts } from "./ElementContacts"
 
 
-// export default function Contacts({contacts}) {
-//     return (
-//         <ul>
-// {contacts.map(({ name, id, number }) => (<li key={id}>{name}{number}</li>) )}
-//     </ul>
-
-        
-//     )
-// } 
 
 
 export const Contacts = ({contacts, onDeleteContacts}) => {
@@ -37,4 +28,5 @@ PropTypes.shape({
 
 
 }
+
 

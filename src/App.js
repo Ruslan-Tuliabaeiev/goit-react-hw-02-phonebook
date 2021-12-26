@@ -1,11 +1,10 @@
 
 import React, { Component } from 'react';
 
- //import shortid from 'shortid';
 import { nanoid } from 'nanoid'
- //import { NewContacts } from './components/NewContacts';
+
 import { Contacts } from './components/Contacts';
-//import style from './components/phonebook.module.css'
+
 import { Form } from './components/Form';
 import { Filter } from './components/Filter';
 
@@ -40,22 +39,6 @@ deleteContacts = (id) => {
   this.setState(prevState => ({ contacts: prevState.contacts.filter(contact => contact.id !== id) }))
 }
 
-    // const shortid = require('shortid');
-// console.log(shortid.generate());
-    
-    // loginInputId = shortid.generate();
-
-//     handleChange  = e => {
-// const {name, value} = e.currentTarget;
-// this.setState({[name]: value});
-//     }
-
-
-
-//   handleNumberChange  = e => {
-//     this.setState({ number: e.target.value });
-   
-// };
 
 handleSubmit = ({name, number}) => {
   const {contacts} = this.state
@@ -64,21 +47,8 @@ handleSubmit = ({name, number}) => {
     alert('This name is already in the phone book')
   } else { const contact = {id: nanoid(), name, number}
  this.setState(({contacts}) => ({contacts:  [contact, ...contacts]}) )}
- 
 
-
-
-
-//  console.log(this.state );
-  // this.reset();
-  
 }
- 
-
-// reset = () => {
-//   this.setState({name: '', number: '' })
-// }
-
 
  render() {
  const visibleContacts = this.findContacts()
