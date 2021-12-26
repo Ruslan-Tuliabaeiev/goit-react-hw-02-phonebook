@@ -7,7 +7,7 @@ import { Contacts } from './components/Contacts';
 
 import { Form } from './components/Form';
 import { Filter } from './components/Filter';
-
+import style from './components/phonebook.module.css';
 
 class App extends Component {
   state = {
@@ -56,11 +56,11 @@ handleSubmit = ({name, number}) => {
    return (
      
 <>
-<h1>Phonebook</h1>
+
 <Form 
 onAddContacts={this.handleSubmit}
 />
- <h2>Contacts</h2>
+ <h2 className={style.contact}>Contacts</h2>
 
 <Filter 
 value={this.state.filter}
@@ -82,13 +82,5 @@ onDeleteContacts = {this.deleteContacts}
 
 }
 
-
-
  export default App;
-
-//==========<Form/>
-
-
-
-
 

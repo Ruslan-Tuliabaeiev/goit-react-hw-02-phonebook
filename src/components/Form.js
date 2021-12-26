@@ -34,8 +34,8 @@ handleSubmit = (e) => {
     return (
       
  <>
- <h1>Phonebook</h1>
-   <form  onSubmit={this.handleSubmit}>
+ <h1 className={style.contact}>Phonebook</h1>
+   <form className={style.formStyle}  onSubmit={this.handleSubmit}>
   <div className={style.blockList}>
   <span className={style.span}>Neme:</span> 
     <label >
@@ -45,7 +45,7 @@ handleSubmit = (e) => {
     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
     title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     required
-   //  id={this.loginInputId}
+ 
   value={this.state.name}
  
   onChange={this.handleChange }

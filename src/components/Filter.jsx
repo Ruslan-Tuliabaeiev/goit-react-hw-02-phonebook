@@ -1,11 +1,11 @@
 
 import PropTypes from'prop-types';
-
+import style from './phonebook.module.css';
 
 export const Filter = ({value, onChange}) => {
 return (
     <>
-    <label>Find contacts by name</label>
+    <label className={style.contactFind}>Find contacts by name</label>
 
 <input
   type="text"

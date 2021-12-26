@@ -1,14 +1,14 @@
 
 import PropTypes from'prop-types';
-
+import style from './phonebook.module.css';
 
 export const ElementContacts = ({name, number, id, func}) => {
 
     return( 
 <>
-<i>{name}:</i>
-<b>{number}</b>
-<button onClick={() => func(id)}  >Delete</button>
+<i className={style.listName}>{name}:</i>
+<b className={style.listNumber}>{number}</b>
+<button className={style.buttonDelete} onClick={() => func(id)}  >Delete</button>
 
 
 </>
